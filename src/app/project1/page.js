@@ -70,7 +70,7 @@ export default function Project2() {
   
           {/* Link ke Website */}
           <Link            
-          href="https://your-project.com"
+          href="https://adithya-wirya.vercel.app/"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-blue-400 mt-6 text-xl font-semibold hover:underline"
