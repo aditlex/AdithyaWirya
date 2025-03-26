@@ -1,50 +1,38 @@
 "use client";
-import { useState } from "react";
+import React, { useState } from 'react'
+export default function Contact() {
+  const [result, setResult] = React.useState("");
 
-export default function ContactForm() {
-  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
-  const [status, setStatus] = useState("");
+  const onSubmit = async (event) => {
+    event.preventDefault();
+    setResult("Sending....");
+    const formData = new FormData(event.target);
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+    formData.append("access_key", "757d76c3-5f38-488e-8717-e203c2c7693f");
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setStatus("Sending...");
+    const response = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      body: formData
+    });
 
-    const formDataToSend = new FormData();
-    formDataToSend.append("name", formData.name);
-    formDataToSend.append("email", formData.email);
-    formDataToSend.append("message", formData.message);
+    const data = await response.json();
 
-    try {
-      const response = await fetch("https://formsubmit.co/adityawirya87@gmail.com", {
-        method: "POST",
-        body: formDataToSend,
-      });
-
-      if (response.ok) {
-        setStatus("Message sent successfully!");
-        setFormData({ name: "", email: "", message: "" });
-      } else {
-        setStatus("Failed to send message.");
-      }
-    } catch (error) {
-      console.error(error);
-      setStatus("Error sending message.");
+    if (data.success) {
+      setResult("Form Submitted Successfully");
+      event.target.reset();
+    } else {
+      console.log("Error", data);
+      setResult(data.message);
     }
   };
 
   return (
     <div className="lg:w-1/2 z-10">
-      <form className="space-y-4" onSubmit={handleSubmit}>
+      <form className="space-y-4" onSubmit={onSubmit}>
         <input
           type="text"
           name="name"
           placeholder="Your Name"
-          value={formData.name}
-          onChange={handleChange}
           className="w-full p-3 bg-gray-800 text-white rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
           required
         />
@@ -52,8 +40,6 @@ export default function ContactForm() {
           type="email"
           name="email"
           placeholder="Your Email"
-          value={formData.email}
-          onChange={handleChange}
           className="w-full p-3 bg-gray-800 text-white rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
           required
         />
@@ -61,8 +47,6 @@ export default function ContactForm() {
           name="message"
           placeholder="Your Message"
           rows="4"
-          value={formData.message}
-          onChange={handleChange}
           className="w-full p-3 bg-gray-800 text-white rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
           required
         />
@@ -72,7 +56,7 @@ export default function ContactForm() {
         >
           Send Message
         </button>
-        <p className="text-white mt-2">{status}</p>
+        <p className="text-white mt-2">{result}</p>
       </form>
     </div>
   );
