@@ -126,7 +126,7 @@ export default function Home() {
 
     <div className="relative overflow-hidden whitespace-nowrap w-full mx-auto py-5">
       {/* Shadow Effect */}
-      <div className="absolute inset-0 w-full h-30 shadow-[inset_-90px_0_50px_-25px_rgb(0,0,0),inset_90px_0_50px_-25px_rgb(0,0,0)] z-10"></div>
+      <div className="absolute inset-0 w-full h-30 shadow-[inset_-90px_0_50px_-25px_rgb(0,2,35),inset_90px_0_50px_-25px_rgb(0,2,35)] z-10"></div>
 
 
       {/* Marquee Wrapper */}
