@@ -5,6 +5,7 @@ import AnimatedBackground from "@/components/AnimatedBackground";
 import Projects from "@/components/Projects";
 import ContactForm from "../components/ContactForm";
 import FAQ from "./faq/page";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -194,9 +195,9 @@ export default function Home() {
       />
       <h3 className="text-lg font-semibold mt-3 z-10">{blog.title}</h3>
       <p className="text-gray-400 text-sm mt-1 z-10">{blog.description}</p>
-      <a href={blog.link} className="text-blue-400 mt-2 inline-block z-10">
+      <Link href={blog.link} className="text-blue-400 mt-2 inline-block z-10">
         Read More →
-      </a>
+      </Link>
     </motion.div>
   ))}
 </div>
