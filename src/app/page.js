@@ -195,7 +195,7 @@ export default function Home() {
       />
       <h3 className="text-lg font-semibold mt-3 z-10">{blog.title}</h3>
       <p className="text-gray-400 text-sm mt-1 z-10">{blog.description}</p>
-      <Link href={blog.link} className="text-blue-400 mt-2 inline-block z-10">
+      <Link href={blog.link}  target="_blank" className="text-blue-400 mt-2 inline-block z-10">
         Read More →
       </Link>
     </motion.div>
@@ -227,7 +227,7 @@ export default function Home() {
       <div className="flex items-center space-x-3 z-10">
       <img src="/icons8-email-open-30.png" alt="GitHub Icon" className="w-6 h-6 object-cover " />
       <p className="text-gray-300 z-10 whitespace-pre">
-  Email  : <a href="mailto:adityawirya87@gmail.com" className="text-blue-400">adityawirya87@gmail.com</a>
+  Email  : <Link href="mailto:adityawirya87@gmail.com"  target="_blank" className="text-blue-400">adityawirya87@gmail.com</Link>
 </p>
 
       </div>
